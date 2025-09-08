@@ -20,7 +20,8 @@ De main branch is de branch waar een stabiele en release-klare versie van de cod
 - Naam van de branch moet altijd "hotfix", het versie nummer en de bugfix bevatten: "hotfix/v0.5.1-database-error"
 ## Merge Strategie
 - Maak gebruik van een pull request voor het mergen. Hierbij wordt gebruik gemaakt van merge commits
-- Bij iedere pull request moet een reviewer aangewezen worden die de request eerst reviewed en feedback geeft (indien nodig). Als de reviewer de pull request accepteert mag er pas gemerged worden.
+- Bij iedere pull request moet een reviewer aangewezen worden (als er een reviewer aanwezig is die dit mogelijk maakt) die de request eerst reviewed en feedback geeft (indien nodig). Als de reviewer de pull request accepteert mag er pas gemerged worden.
+- Indien er geen reviewer aanwezig is die de merge kan reviewen mag alles direct gemerged worden nadat de workflows alle tests hebben afgerond.
 ## Release Strategie
 - Release branches worden, tot de volgende major release (bijvoorbeeld van v0.5 -> v0.6), niet verwijdert nadat deze gemerged is naar main. Indien er wat fout gaat kan dan worden teruggevallen op de release branch
 - Bij releases wordt gebruikt gemaakt van tags. Deze tags bevatten het versienummer: "v0.5"
