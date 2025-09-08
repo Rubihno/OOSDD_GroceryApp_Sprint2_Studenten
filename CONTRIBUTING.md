@@ -6,7 +6,7 @@ De main branch is de branch waar een stabiele en release-klare versie van de cod
 - Is de branch waar actieve ontwikkeling in wordt gedaan.
 ## Feature Branches
 - Hier worden nieuwe functionaliteiten volgens Use Cases ontwikkelt
-- Een feature branch heeft dan ook altijd "feature" en de use case in zijn naam: "feature/uc-#"
+- Een feature branch heeft dan ook altijd "feature", de use case en de feature zelf in de naam: "feature/uc#-winkelmand"
 - Een feature branch mag alleen mergen naar de dev branch via een pull request, niet naar de main of een release branch. 
 ## Release Branches
 - Worden alleen aangemaakt wanneer een nieuwe versie wordt voorbereid
@@ -17,7 +17,7 @@ De main branch is de branch waar een stabiele en release-klare versie van de cod
 - Worden gebruikt om kritieke bugs in productie op te lossen
 - Wordt aangemaakt vanuit en gemerged met main
 - Na het mergen met main worden de updates gelijk doorgevoerd naar de dev, feature en release branches waar nodig.
-- Naam van de branch moet altijd "hotfix" en het versie nummer bevatten: "hotfix/v0.5.1"
+- Naam van de branch moet altijd "hotfix", het versie nummer en de bugfix bevatten: "hotfix/v0.5.1-database-error"
 ## Merge Strategie
 - Maak gebruik van een pull request voor het mergen. Hierbij wordt gebruik gemaakt van merge commits
 - Bij iedere pull request moet een reviewer aangewezen worden die de request eerst reviewed en feedback geeft (indien nodig). Als de reviewer de pull request accepteert mag er pas gemerged worden.
