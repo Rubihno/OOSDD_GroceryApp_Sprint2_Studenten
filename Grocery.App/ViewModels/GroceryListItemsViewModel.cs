@@ -34,10 +34,23 @@ namespace Grocery.App.ViewModels
 
         private void GetAvailableProducts()
         {
-            //Maak de lijst AvailableProducts leeg
-            //Haal de lijst met producten op
-            //Controleer of het product al op de boodschappenlijst staat, zo niet zet het in de AvailableProducts lijst
-            //Houdt rekening met de voorraad (als die nul is kun je het niet meer aanbieden).            
+            AvailableProducts.Clear();
+
+            var producten = _productService.GetAll();
+            int[] groceryListItems = new int[MyGroceryListItems.Count()];
+
+            for (int i = 0; i < MyGroceryListItems.Count(); i++)
+            {
+                groceryListItems[i] = MyGroceryListItems[i].ProductId;
+            }
+
+            foreach (var product in producten)
+            {
+                if (!groceryListItems.Contains(product.Id) && product.Stock != 0)
+                {
+                    AvailableProducts.Add(product);
+                }
+            }
         }
 
         partial void OnGroceryListChanged(GroceryList value)
