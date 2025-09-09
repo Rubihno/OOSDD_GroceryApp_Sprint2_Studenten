@@ -4,6 +4,8 @@ using Grocery.App.Views;
 using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Grocery.App.ViewModels
 {
@@ -36,7 +38,8 @@ namespace Grocery.App.ViewModels
         {
             AvailableProducts.Clear();
 
-            var producten = _productService.GetAll();
+            var producten = _productService.GetAll().ToList();
+
             int[] groceryListItems = new int[MyGroceryListItems.Count()];
 
             for (int i = 0; i < MyGroceryListItems.Count(); i++)
@@ -67,12 +70,18 @@ namespace Grocery.App.ViewModels
         [RelayCommand]
         public void AddProduct(Product product)
         {
-            //Controleer of het product bestaat en dat de Id > 0
-            //Maak een GroceryListItem met Id 0 en vul de juiste productid en grocerylistid
-            //Voeg het GroceryListItem toe aan de dataset middels de _groceryListItemsService
-            //Werk de voorraad (Stock) van het product bij en zorg dat deze wordt vastgelegd (middels _productService)
-            //Werk de lijst AvailableProducts bij, want dit product is niet meer beschikbaar
-            //call OnGroceryListChanged(GroceryList);
+            if (product == null || product.Id <= 0) return;
+
+            int amount = 1;
+
+            GroceryListItem groceryListItem = new(0, GroceryList.Id, product.Id, amount);
+            _groceryListItemsService.Add(groceryListItem);
+
+            product.Stock -= amount;
+            _productService.Update(product);
+
+            Load(GroceryList.Id);
+            OnGroceryListChanged(GroceryList);
         }
     }
 }
