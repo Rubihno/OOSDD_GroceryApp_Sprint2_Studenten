@@ -11,9 +11,9 @@ namespace Grocery.App.ViewModels
         public ObservableCollection<GroceryList> GroceryLists { get; set; }
         private readonly IGroceryListService _groceryListService;
 
-        public GroceryListViewModel(IGroceryListService groceryListService) 
+        public GroceryListViewModel(IGroceryListService groceryListService, GlobalViewModel global) 
         {
-            Title = "Boodschappenlijst";
+            Title = $"Boodschappenlijst van {global.Client.Name}";
             _groceryListService = groceryListService;
             GroceryLists = new(_groceryListService.GetAll());
         }
