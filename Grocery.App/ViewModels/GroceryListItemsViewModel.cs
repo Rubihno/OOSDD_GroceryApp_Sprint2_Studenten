@@ -80,7 +80,6 @@ namespace Grocery.App.ViewModels
             product.Stock -= amount;
             _productService.Update(product);
 
-            Load(GroceryList.Id);
             OnGroceryListChanged(GroceryList);
         }
     }
