@@ -1,8 +1,10 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Grocery.Core.Data.Repositories;
 using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
+using System.Threading.Tasks;
 
 namespace Grocery.App.ViewModels
 {
@@ -21,13 +23,14 @@ namespace Grocery.App.ViewModels
         private string loginMessage;
 
         public LoginViewModel(IAuthService authService, GlobalViewModel global)
-        { //_authService = App.Services.GetServices<IAuthService>().FirstOrDefault();
+        {
+            //_authService = App.Services.GetServices<IAuthService>().FirstOrDefault();
             _authService = authService;
             _global = global;
         }
 
         [RelayCommand]
-        private void Login()
+        private async Task Login()
         {
             Client? authenticatedClient = _authService.Login(Email, Password);
             if (authenticatedClient != null)
@@ -38,7 +41,7 @@ namespace Grocery.App.ViewModels
             }
             else
             {
-                LoginMessage = "Ongeldige inloggegevens.";
+                LoginMessage = "Ongeldige inloggegevens";
             }
         }
     }

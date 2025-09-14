@@ -1,6 +1,7 @@
 ﻿
 using Grocery.Core.Interfaces.Repositories;
 using Grocery.Core.Models;
+using System.Diagnostics;
 
 namespace Grocery.Core.Data.Repositories
 {
@@ -19,12 +20,40 @@ namespace Grocery.Core.Data.Repositories
 
         public Client? Get(string email)
         {
-            return clientList[0];
+            try
+            {
+                foreach (Client client in clientList)
+                {
+                    if (client._emailAddress == email)
+                    {
+                        return client;
+                    }
+                } 
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"{email} is geen geldig emailadres!");
+            }
+            return null;
         }
 
         public Client? Get(int id)
         {
-            return clientList[0];
+            try 
+            {
+                foreach (Client client in clientList)
+                {
+                    if (client.Id == id)
+                    {
+                        return client;
+                    }
+                } 
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Id {id} is geen geldig id!");
+            }
+            return null;
         }
 
         public List<Client> GetAll()
